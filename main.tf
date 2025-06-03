@@ -1,3 +1,12 @@
+terraform {
+  backend "s3" {
+    bucket = "backstage-interns-project"
+    key    = "project/sqs_state.tfstate"
+    region = "ap-south-1"
+    encrypt = true
+    use_lockfile = true
+  }
+}
 resource "aws_sqs_queue" "my_queue" {
   name                      = var.queue_name
   delay_seconds            = 0
