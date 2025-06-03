@@ -4,14 +4,15 @@ metadata:
   name: aws-sqs-queue
   title: AWS SQS Queue
   description: Create or Delete an AWS SQS Queue using Terraform
+
 spec:
-  owner: platform@example.com
+  owner: sumit.d
   type: infrastructure
+
   parameters:
     - title: Queue Settings
-      required: ['queue_name', 'region', 'action']
+      required: ['queue_name', 'aws_region', 'action']
       properties:
-        
         action:
           type: string
           title: Action
@@ -24,23 +25,23 @@ spec:
           type: string
           title: Queue Name
           description: Name of the SQS Queue
-        
-        aws_region: 
+
+        aws_region:
           type: string
           title: AWS Region
-          description: The AWS region where the Load Balancer needs to be Created or want to be Deleted.
+          description: The AWS region where the queue will be created or deleted.
           enum:
             - us-east-1
             - ap-south-1
 
-steps:
+  steps:
     - id: trigger-job
       name: Trigger Jenkins Job
       action: jenkins:job:build
       input:
         jobName: sqs
         parameters:
-            action: "${{ parameters.action }}"
-            queue_name: "${{ parameters.queue_name }}"
-            aws_region: "${{ parameters.aws_region }}"
+          action: "${{ parameters.action }}"
+          queue_name: "${{ parameters.queue_name }}"
+          aws_region: "${{ parameters.aws_region }}"
         waitForCompletion: false
