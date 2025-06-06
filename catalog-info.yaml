@@ -4,7 +4,7 @@ metadata:
   name: Amazon_Simple_Queue_Service
   description: Amazon_Simple_Queue_Service
   annotations:
-    jenkins.io/job-full-name: sqs
+    jenkins.io/job-full-name: 'sqs,albjenkins'
     backstage.io/techdocs-ref: dir:.
     # github.com/project-slug: KarthikNarsapur/backstage/blob/Bhargava/sqs
 spec:
